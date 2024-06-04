@@ -1,0 +1,27 @@
+# for python 3.9.7:
+
+# (upgrade pip version, may need to be called twice:  pip install --upgrade pip)
+
+# from folder "EnsembleFusion":
+# create virtual environment: python -m venv ~/venv/ensemblefusion
+
+# activate venv:  source venv/bin/activate (deactivate command: deactivate)
+# install requirements: pip install -r requirements.txt (or in pycharm, search for "sync python requirements")
+
+#torch==2.1.1+cu118 # for cuda version instead
+torch==2.1.1
+#torchvision==0.16.1+cu118 for cuda version instead
+torchvision==0.16.1
+numpy~=1.26.2
+torch-pruning ~=1.3.5
+mpi4py~=3.1.5
+matplotlib~=3.8.2
+POT
+einops
+
+# for the gpu version also do for CUDA 11.8
+# pip install torch==2.1.1 torchvision==0.16.1 --index-url https://download.pytorch.org/whl/cu118
+
+# For MAC:
+# pip install torch==2.1.1 torchvision==0.16.1  (for MAC)
+# to find the correct torch version for cuda see https://pytorch.org/get-started/previous-versions/

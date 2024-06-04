@@ -1,0 +1,16 @@
+*.xml
+*.iml
+cifar/*
+cifar10/*
+*.pt
+out/*
+cifar100/*
+mnist/*
+models/*
+slurm_out/*
+svhn/*
+*.png
+*.svg
+!/images/*
+plots/*
+.idea/*
