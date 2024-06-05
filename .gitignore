@@ -11,6 +11,8 @@ slurm_out/*
 svhn/*
 *.png
 *.svg
+*.jpg
 !/images/*
 plots/*
 .idea/*
+!/logos/*

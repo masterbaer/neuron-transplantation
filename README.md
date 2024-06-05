@@ -1,4 +1,4 @@
-# neuron-transplantation
+# Neuron Transplantation
 This is the repository for the paper **Model Fusion via Neuron Transplantation**.  
 
 ![transplantation drawio](https://github.com/masterbaer/ensemble-fusion/assets/56799329/034ecee8-a311-4360-a8b8-371f0d6be449)
@@ -74,3 +74,15 @@ python ex6_order.py "p_m_ft" 0
 
 # Cite
 TODO
+
+## Acknowledgements
+
+*This work is supported by the [Helmholtz Association Initiative and
+Networking Fund](https://www.helmholtz.de/en/about_us/the_association/initiating_and_networking/)
+under the Helmholtz AI platform grant and the HAICORE@KIT partition.*
+
+---
+
+<div align="center">
+    <a href="https://www.helmholtz.ai/"><img src="logos/helmholtzai_logo.jpg" height="45px" hspace="3%" vspace="20px"></a><a href="http://www.kit.edu/english/index.php"><img src="logos/kit_logo.svg" height="45px" hspace="3%" vspace="20px"></a><a 
+</div>
