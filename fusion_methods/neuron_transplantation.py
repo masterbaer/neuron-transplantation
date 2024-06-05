@@ -11,7 +11,7 @@ Implementation of Neuron Transplantation and its variants as a fusion method.
 '''
 
 
-def fuse_ensemble(models, example_inputs):
+def fuse_ensemble(models: list[torch.nn.Module], example_inputs: torch.Tensor) -> torch.nn.Module:
     '''
     Neuron Transplantation. The models are fused by taking their most important neurons.
     First, a large, vertically concatenated model is created where all ensemble members are represented.
@@ -49,7 +49,7 @@ def fuse_ensemble(models, example_inputs):
     return combined_model
 
 
-def fuse_ensemble_iterative(models, example_inputs):
+def fuse_ensemble_iterative(models: list[torch.nn.Module], example_inputs: torch.Tensor) -> torch.nn.Module:
     '''
     Iterative version of Neuron Transplantation. The models are iteratively fused in a "running average"-manner.
     Hence, the first models have little weight and the last models have a lot of weight.
@@ -79,7 +79,7 @@ def fuse_ensemble_iterative(models, example_inputs):
     return fused_model
 
 
-def fuse_ensemble_hierarchical(models, example_inputs):
+def fuse_ensemble_hierarchical(models: list[torch.nn.Module], example_inputs: torch.Tensor) -> torch.nn.Module:
     '''
     Hierarchical version of Neuron Transplantation. The models are fused recursively in a merge-sort-manner.
     '''
@@ -96,7 +96,7 @@ def fuse_ensemble_hierarchical(models, example_inputs):
         return fuse_ensemble(models, example_inputs)
 
 
-def concat_models(models):
+def concat_models(models: list[torch.nn.Module]) -> torch.nn.Module:
     '''
     Create a large model with vertically concatenated layers. Each layer is iterated through simultaneously across all
     models. When a certain layer type is reached, e.g. Linear/Conv2D/BatchNorm2D, a large layer is created and
@@ -178,7 +178,8 @@ def concat_models(models):
     return combined_model
 
 
-def combine_linear_layers(worker_layers, is_first_layer, is_last_layer):
+def combine_linear_layers(worker_layers: list[torch.nn.Module], is_first_layer: bool, is_last_layer: bool) \
+        -> torch.nn.Module:
     '''
     Vertical Concatenation of linear layers. Depending on the position (first layer, middle layer, last layer),
     the layers are concatenated with similar inputs (first layer), different inputs (not first layer) and either
@@ -271,7 +272,7 @@ def combine_linear_layers(worker_layers, is_first_layer, is_last_layer):
     return large_layer
 
 
-def combine_conv_layers(worker_layers, is_first_layer):
+def combine_conv_layers(worker_layers: list[torch.nn.Module], is_first_layer: bool) -> torch.nn.Module:
     '''
     Channel-wise concatenation of convolutional layers.
 
@@ -349,7 +350,7 @@ def combine_conv_layers(worker_layers, is_first_layer):
     return large_layer
 
 
-def combine_batchnorm_layers(worker_modules):
+def combine_batchnorm_layers(worker_modules: list[torch.nn.Module]) -> torch.nn.Module:
     '''
     Concatenation of batch-norm layers. All parameters are stacked.
     '''
@@ -379,16 +380,16 @@ def combine_batchnorm_layers(worker_modules):
     return large_layer
 
 
-def isLeafLayer(layer):
+def isLeafLayer(layer: torch.nn.Module) -> bool:
     return len(list(layer.children())) == 0
 
 
-def isLayerWithParams(layer):
+def isLayerWithParams(layer: torch.nn.Module) -> bool:
     return isinstance(layer, torch.nn.Linear) or isinstance(layer, torch.nn.Conv2d) or isinstance(layer,
                                                                                                   torch.nn.BatchNorm2d)
 
 
-def getFirstLayerName(model):
+def getFirstLayerName(model: torch.nn.Module) -> str:
     first_layer_name = None
     for name, module in model.named_modules():
         if isLayerWithParams(module):
@@ -397,7 +398,7 @@ def getFirstLayerName(model):
     return first_layer_name
 
 
-def getLastLayerName(model):
+def getLastLayerName(model: torch.nn.Module) -> str:
     last_layer_name = None
     for name, module in model.named_modules():
         if isLayerWithParams(module):
@@ -406,7 +407,7 @@ def getLastLayerName(model):
 
 
 def get_module_by_name(module: Union[torch.Tensor, nn.Module],
-                       access_string: str):
+                       access_string: str) -> torch.nn.Module:
     '''
     Retrieves a module (e.g. a linear layer weight) nested in another by its access string (e.g. layer1.0.weight)
     See https://discuss.pytorch.org/t/how-to-access-to-a-layer-by-module-name/83797/8
@@ -415,7 +416,7 @@ def get_module_by_name(module: Union[torch.Tensor, nn.Module],
     return reduce(getattr, names, module)
 
 
-def set_module(module, access_string, new_module):
+def set_module(module: torch.nn.Module, access_string: str, new_module: torch.nn.Module):
     '''
     Replaces a module with another using the access string.
     '''

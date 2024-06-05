@@ -1,13 +1,23 @@
 from train_helper import evaluate_model
-
+import torch
 '''
 Training procedure using pytorch's training loop. Optionally, a checkpoint with the best validation accuracy is saved.
 Adapted from https://pytorch.org/tutorials/beginner/introyt/trainingyt.html .
 '''
 
 
-def train_model(device, train_loader, valid_loader, model, optimizer, criterion, scheduler, e, checkpoint=False,
-                checkpoint_model=None):
+def train_model(device: torch.device,
+                train_loader: torch.utils.data.DataLoader,
+                valid_loader: torch.utils.data.DataLoader,
+                model: torch.nn.Module,
+                optimizer: torch.optim.Optimizer,
+                criterion: torch.nn.Module,
+                scheduler: torch.optim.lr_scheduler.LRScheduler,
+                e: int,
+                checkpoint: bool = False,
+                checkpoint_model: torch.nn.Module = None) \
+        -> list[float]:
+
     valid_acc_list = []
 
     # for checkpoint

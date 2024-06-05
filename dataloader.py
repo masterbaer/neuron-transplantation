@@ -7,9 +7,16 @@ Dataloaders. We use the image datasets Cifar10, Cifar100, MNIST and SVHN
 (like Entezari et al. https://arxiv.org/pdf/2110.06296.pdf, but omit the imagenet dataset). 
 '''
 
+
 # SET ALL SEEDS
 
-def get_dataloader_from_name(name, batch_size, num_workers=0, root="data", validation_fraction=0.1, model_name=None):
+def get_dataloader_from_name(name: str,
+                             batch_size: int,
+                             num_workers: int = 0,
+                             root: str = "data",
+                             validation_fraction: float = 0.1,
+                             model_name: str = None) -> (
+        torch.utils.data.DataLoader):
     '''
     Downloads the datasets given a name to the "data" folder and returns train,valid and test data loaders.
     '''
@@ -52,7 +59,6 @@ def get_dataloader_from_name(name, batch_size, num_workers=0, root="data", valid
         train_dataset = torchvision.datasets.CIFAR100(root=root, train=True, transform=transform_train, download=True)
         valid_dataset = torchvision.datasets.CIFAR100(root=root, train=True, transform=transform_train, download=True)
         test_dataset = torchvision.datasets.CIFAR100(root=root, train=False, transform=transform_test, download=True)
-
 
     if name == "mnist":
         # see https://github.com/sidak/otfusion/blob/master/mnist.py (ot-fusion paper)
@@ -106,12 +112,13 @@ def get_dataloader_from_name(name, batch_size, num_workers=0, root="data", valid
 
 
 # GET DATALOADERS (NON-PARALLEL)
-def get_dataloaders_cifar10(batch_size,
-                            num_workers=0,
-                            root='cifar10',
-                            validation_fraction=0.1,
-                            train_transforms=None,
-                            test_transforms=None):
+def get_dataloaders_cifar10(batch_size: int,
+                            num_workers: int = 0,
+                            root: str = 'cifar10',
+                            validation_fraction: float = 0.1,
+                            train_transforms: torchvision.transforms.Compose = None,
+                            test_transforms: torchvision.transforms.Compose = None) \
+        -> torch.utils.data.DataLoader:
     if train_transforms is None:
         train_transforms = torchvision.transforms.ToTensor()
 

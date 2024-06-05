@@ -6,7 +6,7 @@ Weight averaging of multiple models as a fusion technique.
 '''
 
 
-def average_weights(models):
+def average_weights(models: list[torch.nn.Module]) -> torch.nn.Module:
     '''
     Simple weight averaging of multiple models.
     '''

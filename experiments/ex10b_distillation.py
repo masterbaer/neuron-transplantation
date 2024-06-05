@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
             models_found = True
             print("found models from experiment 1")
-        except FileNotFoundError:
+        except (FileNotFoundError, EOFError):
             print("experiment 1 models not found")
 
     # check whether 4 models are available from experiment 2.
@@ -117,7 +117,7 @@ if __name__ == '__main__':
             models_found = True
             print("found models")
 
-        except FileNotFoundError:
+        except (FileNotFoundError, EOFError):
             print("models not found")
 
     if not models_found:

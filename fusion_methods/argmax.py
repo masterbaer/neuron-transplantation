@@ -1,8 +1,12 @@
+import torch
 from train_helper import evaluate_model
 import copy
 
 
-def fuse_argmax(data_loader, models, device):
+def fuse_argmax(data_loader: torch.utils.data.DataLoader,
+                models: list[torch.nn.Module],
+                device: torch.device) \
+        -> torch.nn.Module:
     '''
     Selects the best model from "models" by evaluating them with the dataloader.
     '''

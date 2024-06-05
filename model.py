@@ -1,12 +1,17 @@
 import torch.nn as nn
 import torch.nn.functional as F
+import torch
 
 '''
 The models used in this experiment are defined here. We use an MLP, LeNet, VGG11 and Resnet18.
 For CNNs we exclude the BatchNorm2D layers and we exclude all biases to be compatible with Optimal-Transport-Fusion.
 '''
 
-def get_model_from_name(model_name, output_dim=10, input_dim=None, dataset_name=None, bias=False):
+def get_model_from_name(model_name: str,
+                        output_dim: int = 10,
+                        input_dim: int = None,
+                        dataset_name: str = None,
+                        bias: bool = False) -> torch.nn.Module:
     if model_name == "smallnn":
         return NeuralNetwork(input_dim, output_dim, bias=bias)
 

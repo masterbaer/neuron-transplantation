@@ -1,9 +1,13 @@
 import os
+from typing import Tuple
+
 import numpy as np
 import torch
 
 
-def evaluate_model(model, data_loader, device):
+def evaluate_model(model: torch.nn.Module,
+                   data_loader: torch.utils.data.DataLoader,
+                   device: torch.device) -> Tuple[float, float]:
     '''
     Evaluates the accuracy (and the loss) of a given model and dataset.
     '''
@@ -29,7 +33,7 @@ def evaluate_model(model, data_loader, device):
     return loss_per_batch, accuracy
 
 
-def set_all_seeds(seed):
+def set_all_seeds(seed: int):
     os.environ["PL_GLOBAL_SEED"] = str(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)

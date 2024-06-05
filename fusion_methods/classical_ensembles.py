@@ -1,7 +1,9 @@
 import torch
 
 
-def evaluate_accuracy_output_averaging(data_loader, models, device):
+def evaluate_accuracy_output_averaging(data_loader: torch.utils.data.DataLoader,
+                                       models: list[torch.nn.Module],
+                                       device: torch.device) -> float:
     '''
     Evaluates the ensemble accuracy (output averaging) using the given models and data.
     '''

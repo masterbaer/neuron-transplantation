@@ -3,9 +3,17 @@ from torch import nn
 from train_helper import evaluate_model
 
 
-def train_distill_ensemble(student, models, train_loader, valid_loader, optimizer, criterion,
-                           scheduler, e, device,
-                           T=2, soft_target_loss_weight=0.25):
+def train_distill_ensemble(student: torch.nn.Module,
+                           models: list[torch.nn.Module],
+                           train_loader: torch.utils.data.DataLoader,
+                           valid_loader: torch.utils.data.DataLoader,
+                           optimizer: torch.optim.Optimizer,
+                           criterion: torch.nn.Module,
+                           scheduler: torch.optim.lr_scheduler.LRScheduler,
+                           e: int,
+                           device: torch.device,
+                           T: float = 2,
+                           soft_target_loss_weight: float = 0.25) -> list[float]:
     '''
     Trains a given student model with an ensemble teacher using output averaging and knowledge distillation.
     See https://pytorch.org/tutorials/beginner/knowledge_distillation_tutorial.html .
@@ -56,7 +64,7 @@ def train_distill_ensemble(student, models, train_loader, valid_loader, optimize
 
             # criterion = loss_fn = torch.nn.CrossEntropyLoss()
             label_loss = criterion(student_logits, labels)
-            loss = soft_target_loss_weight * soft_targets_loss + (1-soft_target_loss_weight) * label_loss
+            loss = soft_target_loss_weight * soft_targets_loss + (1 - soft_target_loss_weight) * label_loss
             loss.backward()
             optimizer.step()
 
