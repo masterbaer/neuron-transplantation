@@ -31,7 +31,7 @@ The folder "experiments" contains several sanity checks and experiments.
 In the paper, the experiments 6, 7a-d, 8a-b, 9 and 11 and 12 are used.   
 
 # Example usage
-
+```python
 from fusion_methods.neuron_transplantation import fuse_ensemble  
 
 ... # train models  
@@ -39,37 +39,48 @@ from fusion_methods.neuron_transplantation import fuse_ensemble
 models = [model0, model1] # fully trained models, 2 or more  
 
 for images, labels in train_loader:  
-  &nbsp;&nbsp;&nbsp;&nbsp;example_inputs = images # torch-pruning requires some example inputs to work  
-  &nbsp;&nbsp;&nbsp;&nbsp;break  
+  example_inputs = images # torch-pruning requires some example inputs to work  
+  break  
   
 fused_model = fuse_ensemble(models, example_inputs)  
-
+```
 
 
 
 # Running the experiments
-1) Load the necessary modules:   
+1) Load the necessary modules:
+```   
 module purge  
 module load compiler/gnu/11  
 module load devel/cuda/11.8    
 module load mpi/openmpi/4.0  
 module load lib/hdf5/1.12  
-
+```
 2) Create a virtual environment:  
+```
 python -m venv ~/venv/neurontransplantation
-
+```
 3) Activate virtual environment:  
+```
 source venv/bin/activate
-
+```
 4) Install requirements:
+```
 pip install -r requirements.txt
+```
 If the cuda version is not correct automatically, then install torch manually (e.g. on windows/linux) :  
-&nbsp;&nbsp;&nbsp; pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu118.  
+```
+pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu118.  
+```
 
 5) Submit experiments e.g. using  
-Sbatch experiments/ex6_submit.sh  
+```
+sbatch experiments/ex6_submit.sh  
+```
 or run the python files directly with their command line arguments using  
+```
 python ex6_order.py "p_m_ft" 0
+```
 
 # Cite
 TODO
