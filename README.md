@@ -1,7 +1,10 @@
 # Neuron Transplantation
 This is the repository for the paper **Model Fusion via Neuron Transplantation**.  
 
-![transplantation drawio](https://github.com/masterbaer/ensemble-fusion/assets/56799329/034ecee8-a311-4360-a8b8-371f0d6be449)
+<div align="center">
+  <img src="images/transplantation.drawio.svg" height="250px">
+</div>
+
 
 
 # Method  
@@ -10,12 +13,17 @@ Neuron Transplantation fuses multiple fully trained ensemble members by transpla
 In order to do this, we first concatenate all the ensemble members into a large model and then prune it using torch-pruning.  
 The method is illustrated in the following image:  
 
-![concat_pruning_process drawio](https://github.com/masterbaer/ensemble-fusion/assets/56799329/0145e78c-de51-4730-ba3a-bc5f4f991ed7)
+<div align="center">
+  <img src="images/concat_pruning_process.drawio.svg" height="300px">
+</div>
+
 
 This process sacrifices the smaller neurons to make space for better, larger neurons from the other ensemble members.  
 The following image shows two direct consequences:  
 
-![ex9](https://github.com/masterbaer/ensemble-fusion/assets/56799329/8c134400-68b8-402b-b553-14d6b082e6e5)  
+<div align="center">
+  <img src="images/ex9.svg" height="300px">
+</div>
 
 Firstly, the sacrifice of the smaller neurons causes some initial damage leading to some post-fusion loss.  
 Secondly, the newly transplanted neurons lead to better performance after fine-tuning.  
