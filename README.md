@@ -86,7 +86,16 @@ or run the python files directly with their command line arguments using
 python ex6_order.py "p_m_ft" 0
 ```
 
-# Cite
+# Citation
+
+If you use this repositity, please cite the following paper:
+
+Bibtex:
+```
+TODO
+```
+Plain text:
+
 TODO
 
 ## Acknowledgements
