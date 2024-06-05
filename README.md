@@ -23,12 +23,12 @@ Secondly, the newly transplanted neurons lead to better performance after fine-t
 Note: If the newly transplanted neurons are redundant (from the same model or from very similar models) then the transplantation (obviously) does not improve the 
 performance.
 
-# Repository Overview
-The main folder (EnsembleFusion) contains helper functions to load data and train neural networks using pytorch.  
+# Repository Overview 
+In "fusion_methods" the model fusion methods are implemented. Among them are Vanilla Averaging, Optimal Transport Fusion (from Singh and Jaggi) and Neuron Transplantation (ours).
+Feel free to simply copy the file neuron_transplantation.py to try it out.  
+
 The folder "experiments" contains several sanity checks and experiments.  
 In the paper, the experiments 6, 7a-d, 8a-b, 9 and 11 and 12 are used.   
-In "fusion_methods" the model fusion methods are implemented. Among them are Vanilla Averaging, Optimal Transport Fusion (from Singh and Jaggi) and Neuron Transplantation (ours).   
-Feel free to simply copy the file neuron_transplantation.py to try it out.  
 
 # Example usage
 
@@ -55,17 +55,16 @@ module load devel/cuda/11.8
 module load mpi/openmpi/4.0  
 module load lib/hdf5/1.12  
 
-2) (Once) Create a virtual environment:  
-python -m venv ~/venv/ensemblefusion
+2) Create a virtual environment:  
+python -m venv ~/venv/neurontransplantation
 
 3) Activate virtual environment:  
 source venv/bin/activate
 
-4) (Once) Install requirements:
+4) Install requirements:
 pip install -r requirements.txt
-If the cuda version is not correct automatically, then use :  
+If the cuda version is not correct automatically, then install torch manually (e.g. on windows/linux) :  
 &nbsp;&nbsp;&nbsp; pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cu118.  
-Or simply remove cuda altogether.
 
 5) Submit experiments e.g. using  
 Sbatch experiments/ex6_submit.sh  
