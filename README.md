@@ -1,9 +1,7 @@
 # Neuron Transplantation
 This is the repository for the paper **Model Fusion via Neuron Transplantation**.  
 
-<div align="center">
-  <img src="images/transplantation.drawio.svg" height="250px">
-</div>
+<img src="images/transplantation.drawio.svg" height="250px">
 
 
 
@@ -21,9 +19,7 @@ The method is illustrated in the following image:
 This process sacrifices the smaller neurons to make space for better, larger neurons from the other ensemble members.  
 The following image shows two direct consequences:  
 
-<div align="center">
-  <img src="images/ex9.svg" height="300px">
-</div>
+<img src="images/ex9.svg" height="300px">
 
 Firstly, the sacrifice of the smaller neurons causes some initial damage leading to some post-fusion loss.  
 Secondly, the newly transplanted neurons lead to better performance after fine-tuning.  
